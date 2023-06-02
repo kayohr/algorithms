@@ -1,51 +1,35 @@
-# def merge_sort(numbers, start=0, end=None):
-#     if end is None:
-#         end = len(numbers)
-#     if (end - start) > 1:
-#         mid = (start + end) // 2
-#         merge_sort(numbers, start, mid)
-#         merge_sort(numbers, mid, end)
-#         merge(numbers, start, mid, end)
+def insertion_sort(array):
+    for i in range(len(array)):
+        current_value = array[i]
+        current_position = i
+        while (current_position > 0) and (
+            array[current_position - 1].lower() > current_value.lower()
+        ):
+            array[current_position] = array[current_position - 1]
+            current_position = current_position - 1
+        array[current_position] = current_value
+    return array
 
 
-# def merge(numbers, start, mid, end):
-#     left = numbers[start:mid]
-#     right = numbers[mid:end]
+def is_anagram(first_string, second_string):
+    sorted_first = insertion_sort(list(first_string.lower()))
+    sorted_second = insertion_sort(list(second_string.lower()))
+    if first_string == "" or second_string == "":
+        return ''.join(sorted_first), ''.join(sorted_second), False
 
-#     left_index, right_index = 0, 0
-#     for general_index in range(start, end):
-#         if left_index >= len(left):
-#             numbers[general_index] = right[right_index]
-#             right_index = right_index + 1
-#         elif right_index >= len(right):
-#             numbers[general_index] = left[left_index]
-#             left_index = left_index + 1
-#         elif left[left_index] < right[right_index]:
-#             numbers[general_index] = left[left_index]
-#             left_index = left_index + 1
-#         else:
-#             numbers[general_index] = right[right_index]
-#             right_index = right_index + 1
+    return (
+        ''.join(sorted_first),
+        ''.join(sorted_second),
+        sorted_first == sorted_second
+    )
 
 
-# def is_anagram(first_string, second_string):
-#     """Faça o código aqui."""
-#     # raise NotImplementedError
+if __name__ == "__main__":
+    first_string = "muro"
+    second_string = ""
+    result = is_anagram(first_string, second_string)
+    print(result)
 
-#     if len(first_string) != len(second_string):
-#         return False
-
-#     sorted_first = merge_sort(first_string)
-#     sorted_second = merge_sort(second_string)
-
-#     return sorted_first == sorted_second
-
-
-# if __name__ == "__main__":
-#     first_string = "aram"
-#     second_string = "maar"
-#     result = is_anagram(first_string, second_string)
-#     print(result)
 
 # Site apoio:
 # https://www.geeksforgeeks.org/check-whether-two-strings-are-anagram-of-each-other/
