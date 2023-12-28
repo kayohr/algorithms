@@ -21,7 +21,7 @@ def is_anagram(first_string, second_string):
         ''.join(sorted_first),
         ''.join(sorted_second),
         sorted_first == sorted_second
-    )
+    ) 
 
 
 if __name__ == "__main__":
